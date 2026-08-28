@@ -1,0 +1,92 @@
+.hero {
+  background: var(--ink);
+  background-image: radial-gradient(
+    120% 70% at 50% -10%,
+    rgba(239, 162, 60, 0.16),
+    rgba(239, 162, 60, 0) 60%
+  );
+  border-bottom: 1px solid var(--ink-rule);
+}
+
+.inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: clamp(40px, 7vw, 84px) var(--gutter) clamp(48px, 7vw, 88px);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(330px, 100%), 1fr));
+  gap: clamp(36px, 5vw, 56px);
+  align-items: center;
+}
+
+.copy {
+  max-width: 620px;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+  /* One line, always: a font swap must not re-wrap this and shift the hero. */
+  min-height: 15px;
+}
+
+.eyebrowRule {
+  height: 1px;
+  width: 28px;
+  background: var(--amber);
+  display: block;
+  flex: none;
+}
+
+.eyebrowText {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.3;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--text-on-ink-quiet);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.headline {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(40px, 8.2vw, 68px);
+  line-height: 0.96;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+  margin: 0 0 20px;
+  text-wrap: balance;
+}
+
+.headlineMuted {
+  color: var(--text-on-ink-quiet);
+  display: block;
+}
+
+.body {
+  font-size: clamp(16px, 2.4vw, 18.5px);
+  line-height: 1.55;
+  color: var(--text-on-ink-muted);
+  margin: 0 0 30px;
+  max-width: 52ch;
+  text-wrap: pretty;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.ctaNote {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--text-on-ink-quiet);
+}

@@ -1,0 +1,40 @@
+/* The reveal is attribute-driven so section content can stay server-rendered:
+   this component only owns the wrapper element and the two data attributes. */
+
+.reveal[data-inview='false'] {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.reveal[data-inview='true'] {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--reveal-duration) var(--ease-reveal),
+    transform var(--reveal-duration) var(--ease-reveal);
+}
+
+/* Stagger within a section. Each group sets --reveal-delay inline. */
+
+.reveal[data-inview='false'] :global([data-reveal-item]) {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.reveal[data-inview='true'] :global([data-reveal-item]) {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 600ms var(--ease-reveal) var(--reveal-delay, 0ms),
+    transform 600ms var(--ease-reveal) var(--reveal-delay, 0ms);
+}
+
+/* Belt and braces: if the media query is on, nothing here animates or hides. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal[data-inview='false'],
+  .reveal[data-inview='false'] :global([data-reveal-item]) {
+    opacity: 1;
+    transform: none;
+  }
+}

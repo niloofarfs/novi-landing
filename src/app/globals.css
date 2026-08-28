@@ -1,0 +1,206 @@
+/* =========================================================================
+   Novi - design tokens + reset
+   Every value here is lifted from the design; components consume tokens only.
+   ========================================================================= */
+
+:root {
+  /* --- ink (dark surfaces) ------------------------------------------- */
+  --ink: #12160f;
+  --ink-deep: #0d100b;
+  --ink-panel: #1b211a;
+  --ink-rule: #2a302a;
+
+  /* --- paper (light surfaces) ---------------------------------------- */
+  --paper: #f4f2ed;
+  --paper-raised: #fbfaf7;
+  --paper-chip: #edeae3;
+
+  /* --- greys ---------------------------------------------------------- */
+  --grey-100: #dde0e1;
+  --grey-150: #d3d7d9;
+  --grey-175: #e4e7e8;
+  --grey-200: #c3c8cb;
+  --grey-300: #b4b9bc;
+  --grey-400: #9aa1a6;
+  --grey-500: #8d9298;
+  --grey-600: #767d83;
+  --grey-700: #4a5157;
+  --grey-800: #2a2e28;
+  --grey-900: #22262a;
+
+  /* --- amber (the one accent) ----------------------------------------- */
+  --amber: #efa23a;
+  --amber-hi: #ffc176;
+  --amber-deep: #c97b18;
+  --amber-text: #b4700f;
+
+  /* --- semantic ------------------------------------------------------- */
+  --text-on-ink: #f4f2ed;
+  --text-on-ink-muted: #c3c8cb;
+  --text-on-ink-quiet: #9aa1a6;
+  --text-on-paper: #22262a;
+  --text-on-paper-muted: #4a5157;
+  --text-on-paper-quiet: #767d83;
+
+  /* --- font stacks (next/font supplies the leading variable) ----------- */
+  --font-display: var(--font-barlow-condensed), 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --font-body: var(--font-noto-sans), system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: var(--font-ibm-plex-mono), ui-monospace, 'SFMono-Regular', 'Consolas', monospace;
+  --font-arabic: var(--font-noto-sans-arabic), var(--font-noto-sans), system-ui, sans-serif;
+  /* No webfont: the only Devanagari on the page is the five-glyph Hindi chip
+     label, and every target platform ships a Devanagari face. */
+  --font-devanagari: 'Nirmala UI', 'Noto Sans Devanagari', 'Noto Serif Devanagari',
+    'Devanagari Sangam MN', var(--font-noto-sans), system-ui, sans-serif;
+
+  /* --- geometry -------------------------------------------------------- */
+  --container: 1140px;
+  --gutter: 20px;
+  --section-y: clamp(52px, 8vw, 92px);
+  --radius-sharp: 2px;
+  --radius-card: 4px;
+  --radius-bubble: 14px;
+  --radius-phone-screen: 26px;
+  --radius-phone-shell: 34px;
+
+  /* --- type ------------------------------------------------------------ */
+  --tracking-wordmark: 0.22em;
+  --tracking-display: 0.05em;
+  --tracking-eyebrow: 0.16em;
+  --tracking-label: 0.11em;
+
+  /* --- motion ----------------------------------------------------------- */
+  --ease-reveal: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --reveal-duration: 700ms;
+}
+
+/* --------------------------------------------------------------- reset --- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--text-on-ink);
+  font-family: var(--font-body);
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+img,
+picture,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: var(--amber);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--amber-hi);
+}
+
+::selection {
+  background: var(--amber);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+  border-radius: var(--radius-sharp);
+}
+
+/* --------------------------------------------------------------- utils --- */
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skipLink {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 100;
+  padding: 10px 16px;
+  background: var(--amber);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: var(--radius-sharp);
+  transform: translateY(-200%);
+}
+
+.skipLink:focus-visible {
+  transform: translateY(0);
+  color: var(--ink);
+}
+
+/* ------------------------------------------------------------- motion --- */
+/* One global kill switch. Every component reveal also checks the query in
+   JS, so nothing depends on this rule alone. */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

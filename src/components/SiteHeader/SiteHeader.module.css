@@ -1,0 +1,86 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(18, 22, 15, 0.86);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--ink-rule);
+}
+
+.inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 14px var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-on-ink);
+}
+
+.brand:hover {
+  color: var(--text-on-ink);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--amber);
+  box-shadow: 0 0 14px 3px rgba(239, 162, 60, 0.55);
+  display: block;
+  flex: none;
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 26px;
+  letter-spacing: var(--tracking-wordmark);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.navCta {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 17px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--amber);
+  color: var(--ink);
+  padding: 10px 18px;
+  border-radius: var(--radius-sharp);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  /* Reserved box: the label is 164px in Barlow Condensed and 179px in the
+     size-adjusted fallback, so without this the swap moves the whole <nav>. */
+  min-width: 10.6em;
+  white-space: nowrap;
+  transition: background-color 160ms ease-out;
+}
+
+.navCta:hover {
+  background: var(--amber-hi);
+  color: var(--ink);
+}
+
+@media (max-width: 380px) {
+  .wordmark {
+    font-size: 22px;
+  }
+
+  .navCta {
+    font-size: 15px;
+    padding: 9px 14px;
+  }
+}

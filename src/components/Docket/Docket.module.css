@@ -1,0 +1,106 @@
+/* A printed ticket. Shared by the cost calculator and the pilot terms. */
+
+.docket {
+  width: 100%;
+  max-width: 400px;
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.22));
+}
+
+/* Perforated top edge, punched out of the paper with a repeating mask. */
+.perforation {
+  height: 9px;
+  background: var(--paper-raised);
+  -webkit-mask-image: radial-gradient(circle 5px at 6px 0, transparent 0 4.6px, #000 5px);
+  mask-image: radial-gradient(circle 5px at 6px 0, transparent 0 4.6px, #000 5px);
+  -webkit-mask-size: 12px 9px;
+  mask-size: 12px 9px;
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+}
+
+.body {
+  background: var(--paper-raised);
+  padding: 22px 22px 26px;
+  font-family: var(--font-mono);
+  color: var(--grey-800);
+  font-size: 13px;
+  letter-spacing: 0.03em;
+}
+
+.title {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.rule {
+  border: 0;
+  border-top: 1px dashed var(--grey-400);
+  margin: 14px 0;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.group.roomy {
+  gap: 11px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.rowLabel {
+  text-transform: uppercase;
+}
+
+.rowValue {
+  /* Tabular figures keep the ticket from reflowing as numbers count up. */
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.rowValue.strong {
+  font-weight: 600;
+}
+
+.rowValue.money {
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--amber-text);
+}
+
+.line {
+  text-transform: uppercase;
+}
+
+.line.price {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--amber-text);
+}
+
+.caption {
+  color: var(--text-on-paper-quiet);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+}
+
+.footer {
+  font-size: 12.5px;
+  letter-spacing: 0.11em;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--text-on-paper-muted);
+  margin: 0;
+}
